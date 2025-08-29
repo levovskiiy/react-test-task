@@ -1,6 +1,6 @@
 import { Button, Card, CardContent, CardFooter, CardHeader } from '@/internal/components';
 import { useProductModule } from '@/internal/presentation/product';
-import { ProductListViewModel } from '@/pages/product/list/product-list.view-model.ts';
+import { ProductListViewModel } from '@/pages/product/list/view-model/product-list.view-model.ts';
 import { observer, useLocalObservable } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';

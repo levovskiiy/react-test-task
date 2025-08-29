@@ -1,1 +1,1 @@
-export * from './product-list';
+export * from './ui/product-list.tsx';

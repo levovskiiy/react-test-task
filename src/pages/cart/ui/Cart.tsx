@@ -12,7 +12,7 @@ export const Cart = observer(() => {
             {cartStore.hasItems ? (
                 <div className="flex flex-col gap-6 w-full max-w-2xl">
                     {cartStore.items.map((it) => (
-                        <Card key={it.product.id} className="shadow-md">
+                        <Card key={it.product.id + '_' + it.size.id + '_' + it.color.id} className="shadow-md">
                             <CardHeader className="flex flex-row items-center justify-between">
                                 <CardTitle>{it.product.name}</CardTitle>
                                 <Button
