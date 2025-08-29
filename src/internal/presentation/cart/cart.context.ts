@@ -12,3 +12,7 @@ export const CartModuleContext = createContext<CartModule>({} as CartModule);
 export function useCartModule() {
     return useContext(CartModuleContext);
 }
+
+export function useCartStore() {
+    return useContext(CartModuleContext).cartStore;
+}
