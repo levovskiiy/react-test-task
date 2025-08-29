@@ -1,4 +1,4 @@
-export class ProductVariant {
+export class ProductColor {
 
     constructor(
         public id: number,

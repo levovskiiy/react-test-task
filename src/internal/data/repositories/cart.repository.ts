@@ -6,18 +6,22 @@ export class CartRepository implements ICartRepository {
         const cart = await storage.getItem<CartItem[]>('cart') ?? [];
         cart.push(item);
         await storage.setItem('cart', cart);
-        return new CartItem(item.productId, item.variantId, item.name, item.price);
+        return JSON.parse(JSON.stringify(item));
     }
 
     public async remove(productId: number): Promise<void> {
         const cart = await storage.getItem<CartItem[]>('cart') ?? [];
 
-        if (cart.findIndex((it) => it.productId === productId) < 0) {
+        if (cart.findIndex((it) => it.product.id === productId) < 0) {
             throw new Error('Not found cart item');
         }
 
-        const filtered = cart.filter((it) => it.productId !== productId);
+        const filtered = cart.filter((it) => it.product.id !== productId);
         await storage.setItem('cart', filtered);
+    }
+
+    public async load(): Promise<CartItem[]> {
+        return await storage.getItem<CartItem[]>('cart') ?? [];
     }
 
 }

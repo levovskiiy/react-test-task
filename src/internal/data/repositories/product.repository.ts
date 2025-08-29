@@ -1,5 +1,5 @@
 import { storage } from '@/internal/data/storage';
-import type { IProductRepository, Product } from '@/internal/domain';
+import type { IProductRepository, Product, ProductSize } from '@/internal/domain';
 
 export class ProductRepository implements IProductRepository {
     public async get(id: number): Promise<Product> {
@@ -17,4 +17,8 @@ export class ProductRepository implements IProductRepository {
         return await storage.getItem<Product[]>('products') ?? [];
     }
 
+    public async getSizeDict(): Promise<ProductSize[]> {
+        const items = await storage.getItem<ProductSize[]>('sizes');
+        return items!;
+    }
 }

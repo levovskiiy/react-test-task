@@ -9,7 +9,9 @@ export const AppHeader = observer(() => {
 
     return (
         <header className="flex justify-between items-center p-4 border-b">
-            <h1 className="heading-1">Product Store</h1>
+            <Link to="/" className="heading-1">
+                Product Store
+            </Link>
             <Button variant="ghost" asChild>
                 <Link to="/cart">
                     <ShoppingCart/>

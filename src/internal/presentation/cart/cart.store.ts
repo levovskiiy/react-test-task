@@ -1,4 +1,4 @@
-import { AddToCartUseCase, CartItem } from '@/internal/domain';
+import { AddToCartUseCase, CartItem, DeleteCartItemUseCase, LoadCartUseCase } from '@/internal/domain';
 import { makeAutoObservable, runInAction } from 'mobx';
 
 export class CartStore {
@@ -9,33 +9,43 @@ export class CartStore {
     }
 
     public get totalPrice(): number {
-        return this.items.reduce((acc, product) => acc + product.price, 0);
+        return this.items.reduce((acc, product) => acc + Number(product.color.price), 0);
     }
 
     public get count(): number {
         return this.items.length;
     }
 
-    constructor(private _addToCart: AddToCartUseCase) {
+    constructor(
+        private addToCart: AddToCartUseCase,
+        private deleteCartItem: DeleteCartItemUseCase,
+        private loadCart: LoadCartUseCase,
+    ) {
         makeAutoObservable(this);
     }
 
     public addItem = async (value: CartItem): Promise<void> => {
-        const added = await this._addToCart.execute(value);
+        const added = await this.addToCart.execute(value);
         runInAction(() => {
             this.items.push(added);
         });
     };
 
-    public contains = (productID: number): boolean => {
-        return this.items.some((it) => it.productId === productID);
+    public contains = (sizeId: number, colorId: number): boolean => {
+        return this.items.some((it) => it.size.id === sizeId && it.color.id === colorId);
     };
 
-    public remove = (productID: number): void => {
-        this.items = this.items.filter((it) => it.productId !== productID);
+    public remove = async (productID: number): Promise<void> => {
+        await this.deleteCartItem.execute(productID);
+        runInAction(() => {
+            this.items = this.items.filter((it) => it.product.id !== productID);
+        });
     };
 
-    public addMore = (values: CartItem[]): void => {
-        this.items.push(...values);
+    public loadItems = async (): Promise<void> => {
+        const items = await this.loadCart.execute();
+        runInAction(() => {
+            this.items = items;
+        });
     };
 }

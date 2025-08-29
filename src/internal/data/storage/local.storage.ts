@@ -46,7 +46,7 @@ storage.setItem('products', [
                 id: 1,
                 name: 'желтый',
                 images: [ '/images/2/yellow_front.png', '/images/2/yellow_back.png' ],
-                price: '88.00',
+                price: '5250.00',
                 description: 'Описание для "Майка желтый"',
                 sizes: [ 1, 2, 3, 4, 5 ],
             },
@@ -68,4 +68,15 @@ storage.setItem('products', [
             },
         ],
     },
-]).catch(() => console.log('error'));
+]).catch(() => console.log('Storage: failed initialize products'));
+
+storage.setItem(
+    'sizes',
+    [
+        { id: 1, label: 'XS', number: 44 },
+        { id: 2, label: 'S', number: 46 },
+        { id: 3, label: 'M', number: 48 },
+        { id: 4, label: 'L', number: 50 },
+        { id: 5, label: 'XL', number: 52 },
+    ],
+).catch(() => console.log('Storage: failed initialize sizes dict'));
