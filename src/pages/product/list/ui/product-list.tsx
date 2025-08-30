@@ -1,4 +1,5 @@
 import { Button, Card, CardContent, CardFooter, CardHeader } from '@/internal/components';
+import { formatMoney } from '@/internal/lib';
 import { useProductModule } from '@/internal/presentation/product';
 import { ProductListViewModel } from '@/pages/product/list/view-model/product-list.view-model.ts';
 import { observer, useLocalObservable } from 'mobx-react-lite';
@@ -37,7 +38,7 @@ export const ProductList = observer(() => {
 
                         <CardContent className="flex flex-col gap-2 p-4">
                             <p className="text-lg font-semibold">{product.name}</p>
-                            <p className="text-muted-foreground">{price} ₽</p>
+                            <p className="text-muted-foreground">{formatMoney(price)}</p>
                         </CardContent>
 
                         <CardFooter className="p-4 pt-0">
