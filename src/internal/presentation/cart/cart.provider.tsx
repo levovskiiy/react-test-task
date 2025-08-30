@@ -1,8 +1,8 @@
+import { type PropsWithChildren, useEffect, useRef } from 'react';
 import { CartRepository } from '@/internal/data';
 import { AddToCartUseCase, DeleteCartItemUseCase, type ICartRepository, LoadCartUseCase } from '@/internal/domain';
-import { CartModuleContext } from '@/internal/presentation/cart/cart.context.ts';
-import { CartStore } from '@/internal/presentation/cart/cart.store.ts';
-import { type PropsWithChildren, useEffect, useRef } from 'react';
+import { CartModuleContext } from './cart.context';
+import { CartStore } from './cart.store.ts';
 
 export function CartModuleProvider({ children }: PropsWithChildren) {
     const repository = useRef<ICartRepository>(new CartRepository());

@@ -1,6 +1,6 @@
-import { AddToCartUseCase } from '@/internal/domain';
-import type { CartStore } from '@/internal/presentation/cart/cart.store.ts';
 import { createContext, useContext } from 'react';
+import { AddToCartUseCase } from '@/internal/domain';
+import type { CartStore } from './cart.store';
 
 interface CartModule {
     cartStore: CartStore;

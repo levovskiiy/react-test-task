@@ -1,4 +1,4 @@
-import { Cart } from '@/pages/cart/ui/Cart.tsx';
+import { Cart } from './ui/Cart';
 import type { RouteObject } from 'react-router';
 
 export const cartRoutes: RouteObject[] = [

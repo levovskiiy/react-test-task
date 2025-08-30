@@ -6,7 +6,7 @@ import {
     GetSizeDictUseCase,
     type IProductRepository,
 } from '@/internal/domain';
-import { ProductModuleContext } from './product.context.ts';
+import { ProductModuleContext } from './product.context';
 
 export function ProductModuleProvider({ children }: PropsWithChildren) {
     const repository = useRef<IProductRepository>(new ProductRepository());
